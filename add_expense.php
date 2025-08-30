@@ -49,6 +49,28 @@ require 'db.php';
             border-radius: 8px;
             font-size: 14px;
         }
+        select {
+    width: 106.4%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+input[type="text"]:hover, input[type="date"]:hover, input[type="number"]:hover,select:hover {
+    border-color: #4f46e5; /* same as button hover color */
+}
+
+select:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 5px rgba(79, 70, 229, 0.5);
+}
 
         button {
             width: 100%;
@@ -89,7 +111,20 @@ require 'db.php';
             <input type="date" name="date" id="date" required>
 
             <label for="category">Category:</label>
-            <input type="text" name="category" id="category" placeholder="e.g. Food, Travel" required>
+<select name="category" id="category" required>
+    <option value="">--Select Category--</option>
+    <option value="Clothes">Clothes</option>
+    <option value="Shoes">Shoes</option>
+    <option value="Bills">Bills</option>
+    <option value="Fees">Fees</option>
+    <option value="Groceries">Groceries</option>
+    <option value="Food">Food</option>
+    <option value="Transport">Transport</option>
+    <option value="Health">Health</option>
+    <option value="Entertainment">Entertainment</option>
+    <option value="Gifts">Gifts</option>
+    <option value="Miscellaneous">Miscellaneous</option>
+</select>
 
             <label for="amount">Amount:</label>
             <input type="number" name="amount" id="amount" placeholder="e.g. 500" required>

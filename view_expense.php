@@ -4,6 +4,12 @@ $sql="SELECT * FROM expenses ORDER BY date DESC";
 $stmt=$pdo->prepare($sql);
 $stmt->execute();
 $expenses= $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$totalSql = "SELECT SUM(amount) as total_amount FROM expenses";
+$totalStmt = $pdo->prepare($totalSql);
+$totalStmt->execute();
+$totalResult = $totalStmt->fetch(PDO::FETCH_ASSOC);
+$totalAmount = $totalResult['total_amount'] ?? 0; // 0 if no expenses
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,6 +25,7 @@ $expenses= $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <h2 style="text-align:center; margin-top:6rem;">Expense List</h2>
+    <h3>Total Expenses: Rs <?= $totalAmount ?></h3>
     <table>
         <tr>
             <th>ID</th>
