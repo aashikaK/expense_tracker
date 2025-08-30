@@ -10,6 +10,14 @@ $totalStmt = $pdo->prepare($totalSql);
 $totalStmt->execute();
 $totalResult = $totalStmt->fetch(PDO::FETCH_ASSOC);
 $totalAmount = $totalResult['total_amount'] ?? 0; // 0 if no expenses
+
+
+// Total by category
+$categorySql = "SELECT category, SUM(amount) as total FROM expenses GROUP BY category";
+$categoryStmt = $pdo->prepare($categorySql);
+$categoryStmt->execute();
+$categoryTotals = $categoryStmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,14 +25,14 @@ $totalAmount = $totalResult['total_amount'] ?? 0; // 0 if no expenses
     <title>My Expenses</title>
     <style>
         body{background: #d8c4fdff;}
-        table { border-collapse: collapse; width: 80%; margin: 2rem auto; font-size: 1.3rem; margin-top:3rem;}
+        table { border-collapse: collapse; width: 80%; margin: 2rem auto; font-size: 1.3rem; margin-top:2rem;}
         th, td { border: 0.2rem solid #444; padding: 0.8rem; text-align: center; background:#e3d3ffff; }
         th { background-color: #b378f7ff; }
         button { cursor: pointer; }
     </style>
 </head>
 <body>
-    <h2 style="text-align:center; margin-top:6rem;">Expense List</h2>
+    <h2 style="text-align:center; margin-top:3rem;">Expense List</h2>
     <h3>Total Expenses: Rs <?= $totalAmount ?></h3>
     <table>
         <tr>
@@ -67,5 +75,20 @@ $totalAmount = $totalResult['total_amount'] ?? 0; // 0 if no expenses
             <tr><td colspan="6">No expenses found</td></tr>
         <?php endif; ?>
     </table>
+
+    <h3 style="text-align:center; color:#4f46e5; margin-top:2rem; font-weight:bold; font-size:1.6rem">Total by Category</h3>
+<table style="width:50%; margin:1rem auto; border:1px solid #444; border-collapse:collapse;">
+    <tr style="background:#b378f7ff; color:white;">
+        <th>Category</th>
+        <th>Total Amount (Rs)</th>
+    </tr>
+    <?php foreach($categoryTotals as $cat): ?>
+    <tr style="background:#e3d3ffff; text-align:center;">
+        <td><?= $cat['category'] ?></td>
+        <td><?= $cat['total'] ?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
 </body>
 </html>
