@@ -134,6 +134,7 @@ select:focus {
 
             <button type="submit" name="btn_add">Add Expense</button>
         </form>
+        
         <?php
         if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["btn_add"])){
             $date=$_POST["date"];
@@ -152,5 +153,8 @@ select:focus {
         }
         ?>
     </div>
+ <a href="view_expense.php" style="background-color:green;text-decoration:none; margin-top:600px;margin-left:-350px; color:white; border:none; padding:5px 10px; border-radius:5px;">
+                                Click here to View and Edit Expenses
+                            </a>
 </body>
 </html>

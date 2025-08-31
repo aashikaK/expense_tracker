@@ -33,7 +33,7 @@ $categoryTotals = $categoryStmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <h2 style="text-align:center; margin-top:3rem;">Expense List</h2>
-    <h3>Total Expenses: Rs <?= $totalAmount ?></h3>
+    <h3 style="margin-left:150px">Total Expenses: Rs <?= $totalAmount ?></h3>
     <table>
         <tr>
             <th>ID</th>
@@ -75,7 +75,9 @@ $categoryTotals = $categoryStmt->fetchAll(PDO::FETCH_ASSOC);
             <tr><td colspan="6">No expenses found</td></tr>
         <?php endif; ?>
     </table>
-
+ <a href="add_expense.php" style="background-color:green;text-decoration:none; margin-left:650px; color:white; border:none; padding:5px 10px; border-radius:5px;">
+                                Click here to Add Expenses
+                            </a>
     <h3 style="text-align:center; color:#4f46e5; margin-top:2rem; font-weight:bold; font-size:1.6rem">Total by Category</h3>
 <table style="width:50%; margin:1rem auto; border:1px solid #444; border-collapse:collapse;">
     <tr style="background:#b378f7ff; color:white;">

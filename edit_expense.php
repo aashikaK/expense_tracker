@@ -84,6 +84,5 @@ if(isset($_GET['id'])) {
 
         <button type="submit" name="update">Update Expense</button>
     </form>
-
 </body>
 </html>
